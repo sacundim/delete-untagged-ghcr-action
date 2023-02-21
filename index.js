@@ -31,7 +31,7 @@ async function run() {
                 {
                     package_type: 'container',
                     package_name: package_name,
-                    package_version_id: version_id
+                    package_version_id: version.id
                 }
             );
             core.info("delete status " + deleteResponse.status)
