@@ -7,7 +7,7 @@ async function run() {
     const per_page = core.getInput('per-page');
     const token = core.getInput('token');
 
-    const octokit = github.getOctokit(myToken)
+    const octokit = github.getOctokit(token)
 
     const versions = await octokit.request(
         'GET /user/packages/{package_type}/{package_name}/versions', 
