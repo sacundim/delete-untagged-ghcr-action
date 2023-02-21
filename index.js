@@ -19,19 +19,23 @@ async function run() {
         }
     );
 
-    for(version of versions) {
+    if (core.isDebug()) {
+        core.debug("versions = " + versions);
+    }
+
+    for(version of versions.data) {
         if (version.metadata.container.tags.length == 0) {
             core.info("delete " + version.id)
             /*
-              const delete = await octokit.request(
-              'DELETE /user/packages/{package_type}/{package_name}/versions/{package_version_id}', 
-              {
-              package_type: 'container',
-              package_name: package_name,
-              package_version_id: version_id
-              }
-              );
-              core.info("status " + delete.status)
+            const delete = await octokit.request(
+                'DELETE /user/packages/{package_type}/{package_name}/versions/{package_version_id}', 
+                {
+                    package_type: 'container',
+                    package_name: package_name,
+                    package_version_id: version_id
+                }
+            );
+            core.info("status " + delete.status)
             */
         }
     }
