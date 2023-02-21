@@ -26,7 +26,6 @@ async function run() {
     for(version of versions.data) {
         if (version.metadata.container.tags.length == 0) {
             core.info("delete " + version.id)
-            /*
             const delete = await octokit.request(
                 'DELETE /user/packages/{package_type}/{package_name}/versions/{package_version_id}', 
                 {
@@ -35,8 +34,7 @@ async function run() {
                     package_version_id: version_id
                 }
             );
-            core.info("status " + delete.status)
-            */
+            core.info("delete status " + delete.status)
         }
     }
 }
