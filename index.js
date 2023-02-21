@@ -9,7 +9,7 @@ async function run() {
 
     const octokit = github.getOctokit(token)
 
-    const versions = await octokit.request(
+    const versionsResponse = await octokit.request(
         'GET /user/packages/{package_type}/{package_name}/versions', 
         {
             package_type: 'container',
@@ -23,10 +23,10 @@ async function run() {
         core.debug("versions = " + versions);
     }
 
-    for(version of versions.data) {
+    for(version of versionsResponse.data) {
         if (version.metadata.container.tags.length == 0) {
             core.info("delete " + version.id)
-            const delete = await octokit.request(
+            const deleteResponse = await octokit.request(
                 'DELETE /user/packages/{package_type}/{package_name}/versions/{package_version_id}', 
                 {
                     package_type: 'container',
@@ -34,7 +34,9 @@ async function run() {
                     package_version_id: version_id
                 }
             );
-            core.info("delete status " + delete.status)
+            core.info("delete status " + deleteResponse.status)
+        } else {
+            core.info("Keeping version: " + version.id);
         }
     }
 }
