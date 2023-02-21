@@ -9,8 +9,12 @@ inputs:
     required: true
   per-page:
     description: 'How many versions to process per request.'
-    required: true
+    required: false
     default: '100'
+  token:
+    description: 'A GitHub Actions token. Uses the default one by default.'
+    required: false
+    default: ${{ github.token }}
 runs:
   using: 'node16'
   main: 'index.js'
