@@ -2,7 +2,6 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 async function run() {
-    const owner = core.getInput('owner');
     const package_name = core.getInput('package');
     const per_page = core.getInput('per-page');
     const token = core.getInput('token');
